@@ -1,0 +1,24 @@
+name: Run FizzBuzz Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install coverage
+
+      - name: Run tests with coverage
+        run: |
+          coverage run -m unittest test_fizzbuzz.py
+          coverage report -m
