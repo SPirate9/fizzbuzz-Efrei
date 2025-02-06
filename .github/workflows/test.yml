@@ -1,4 +1,4 @@
-name: Run FizzBuzz Tests
+name: Run FizzBuzz with Docker
 
 on: [push, pull_request]
 
@@ -10,15 +10,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install coverage
-
-      - name: Run tests with coverage
+      - name: Set up Docker
         run: |
-          coverage run -m unittest test_fizzbuzz.py
-          coverage report -m
+          docker --version
+
+      - name: Build Docker image
+        run: |
+          docker build -t fizzbuzz-app .
+
+      - name: Run FizzBuzz application in Docker
+        run: |
+          docker run fizzbuzz-app
