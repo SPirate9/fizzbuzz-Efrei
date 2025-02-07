@@ -1,4 +1,4 @@
-name: Run Tests with Coverage in Docker
+name: Run FizzBuzz with Docker
 
 on: [push, pull_request]
 
@@ -10,11 +10,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: docker build -t fizzbuzz-app .
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-      - name: Run tests with coverage
-        run: docker run fizzbuzz-app
+      - name: Pull Docker image from Docker Hub
+        run: docker pull saad292/fizzbuzz-app
+
+      - name: Run tests inside Docker
+        run: docker run saad292/fizzbuzz-app coverage run -m unittest test_fizzbuzz.py
 
       - name: Generate coverage report
-        run: docker run fizzbuzz-app coverage report -m
+        run: docker run saad292/fizzbuzz-app coverage report -m
