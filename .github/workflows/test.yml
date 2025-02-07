@@ -1,4 +1,4 @@
-name: Run FizzBuzz with Docker
+name: Run Tests with Coverage in Docker
 
 on: [push, pull_request]
 
@@ -10,14 +10,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Docker
-        run: docker --version
-
       - name: Build Docker image
         run: docker build -t fizzbuzz-app .
 
-      - name: Run tests inside Docker
-        run: docker run fizzbuzz-app coverage run -m unittest test_fizzbuzz.py
+      - name: Run tests with coverage
+        run: docker run fizzbuzz-app
 
-      - name: Generate coverage report
-        run: docker run fizzbuzz-app coverage report -m
+       - name: Generate coverage report
+         run: docker run fizzbuzz-app coverage report -m
