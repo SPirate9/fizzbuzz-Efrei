@@ -1,5 +1,5 @@
 FROM python:3.9-slim
 WORKDIR /app
 COPY . /app
-EXPOSE 8080
+RUN pip install coverage
 CMD ["python", "fizzbuzz.py"]
