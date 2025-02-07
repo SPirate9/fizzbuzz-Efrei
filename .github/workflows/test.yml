@@ -16,5 +16,5 @@ jobs:
       - name: Run tests with coverage
         run: docker run fizzbuzz-app
 
-       - name: Generate coverage report
-         run: docker run fizzbuzz-app coverage report -m
+      - name: Generate coverage report
+        run: docker run fizzbuzz-app coverage report -m
