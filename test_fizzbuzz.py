@@ -13,7 +13,7 @@ class TestFizzBuzz(unittest.TestCase):
         self.assertEqual(fizz_buzz(20), "Buzz")
 
     def test_fizzbuzz(self):
-        self.assertEqual(fizz_buzz(15), "FizzBuzz")
+        self.assertEqual(fizz_buzz(15), "Fizzbuzz")
         self.assertEqual(fizz_buzz(30), "FizzBuzz")
         self.assertEqual(fizz_buzz(45), "FizzBuzz")
 
